@@ -1,0 +1,15 @@
+FROM php:8.1-apache
+
+RUN apt-get update && \
+    docker-php-ext-install mysqli pdo pdo_mysql
+    RUN docker-php-ext-install mysqli
+
+
+FROM mysql:latest
+USER root
+RUN chmod 755 /var/lib/mysql
+
+FROM phpmyadmin/phpmyadmin
+
+ENV MYSQL_ROOT_PASSWORD=123
+ENV PMA_HOST=sueda
